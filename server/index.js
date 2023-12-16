@@ -8,6 +8,15 @@ app.use(express.json());
 
 //Routes
 
+app.get("/", async (req, res) => {
+	try {
+		res.writeHead(200, { "Content-Type": "text/plain" });
+		res.end("Hello World!");
+	} catch (error) {
+		console.error(error.message);
+	}
+});
+
 // GET ALL ROOMS
 app.get("/rooms", async (req, res) => {
 	try {
