@@ -1,0 +1,27 @@
+CREATE DATABASE sonicrooms;
+
+CREATE TABLE room(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  price_per_hour INTEGER
+);
+
+-- user_id INTEGER REFERENCES "user"(id) ON DELETE CASCADE,
+
+CREATE TABLE booking(
+  id SERIAL PRIMARY KEY,
+  room_id INTEGER REFERENCES room(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES "user"(id) ON DELETE CASCADE,
+  start_time TIME NOT NULL,
+  end_time TIME NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE "user" (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
